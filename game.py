@@ -13,9 +13,15 @@ suits = {'Spades': '♠',
          'Diamonds': '♦'}
 
 
+# TODO: Working Mana management + new stuff per turn
+# TODO: 4-player functionality
+# TODO: Combine character stats like atk/def with the cards played, in the damage/buff methods in Player
+# TODO: Create reasonable mana consumption / regeneration system for players
 # TODO: 12/52 cards finished
 # TODO: Write a simple AI
 # TODO: Commission art
+# TODO: Future turn stats
+# TODO: base stats
 # TODO: Cross-compatible GUI via a Curses-like interface / webapp / tkinter / pyqt / pygame
 
 def enter_to_continue():
@@ -49,6 +55,11 @@ def choice(title='Choice:', ls=['Y', 'N']) -> int:
 
 # returns the string of the sign of a number.
 def sign(num):
+    """
+
+    :param num: integer
+    :return: the past tense string of the sign's intent (increase/decrease)
+    """
     sign = ''
     if num > 0:
         sign = 'increased'
@@ -59,6 +70,7 @@ def sign(num):
 
 
 class Card:
+
     def __init__(self, uid, title, card_strength, cardname, suit, color, category, cost, hp, mp, armor,
                  atk, target, turns, info, lore, art):
         # 0-51 for now...
@@ -135,15 +147,26 @@ class Player:
         self.suit = suit
         self.color = color
         self.category = category
+
+        # HP is the running total, while base is not changed and used for calculations and mod_ functions
         self.hp = int(hp)
+        self.basehp = int(self.hp)
+
         self.mp = int(mp)
+        self.basemp = int(self.mp)
+
         self.armor = int(armor)
+        self.basearmor = self.armor
+
         self.atk = int(atk)
+        self.baseatk = self.atk
+
         self.art = art
         self.info = info
         self.hand = []
         self.hand_empty = False
         self.endturn = False
+        self.alive = False
         self.datadict = {'uid': self.uid,
                          'title': self.title,
                          'suit': self.suit,
@@ -162,15 +185,21 @@ class Player:
     def __str__(self) -> str:
         return str(self.datadict)
 
+    # changes base hp, only used for buffs and defbuffs
     def mod_hp(self, val):
         if sign(val):
             if self.hp <= 0:
                 self.hp = 0
                 print('HP is already 0!')
+                self.alive = False
                 return False
             self.hp += val
             print('HP {} by {}!'.format(sign(val), val))
             return True
+
+    #
+    def damage_hp(self, val):
+        pass
 
     def mod_mp(self, val):
         if sign(val):
@@ -182,6 +211,16 @@ class Player:
             print('MP {} by {}!'.format(sign(val), val))
             return True
 
+    def damage_mp(self, val):
+        pass
+
+    def spend_mp(self, cost):
+        self.mp -= cost
+        print('You spend {}MP'.format(cost))
+        if self.mp <= 0:
+            print('out of mana, next turn.')
+            self.endturn = True
+
     def mod_armor(self, val):
         if sign(val):
             if self.armor <= 0:
@@ -191,6 +230,10 @@ class Player:
             self.armor += val
             print('Armor {} by {}!'.format(sign(val), val))
             return True
+
+    # when an offensive card damages armor
+    def damage_armor(self, val):
+        pass
 
     def mod_atk(self, val):
         if sign(val):
@@ -202,12 +245,8 @@ class Player:
             print('Attack {} by {}!'.format(sign(val), val))
             return True
 
-    def spend_mp(self, cost):
-        self.mp -= cost
-        print('You spend {}MP'.format(cost))
-        if self.mp <= 0:
-            print('out of mana, next turn.')
-            self.endturn = True
+    def damage_atk(self, val):
+        pass
 
     def printhand(self):
         print('「YOUR HAND」')
@@ -238,7 +277,8 @@ class Player:
 
 
 class Game:
-    # so far, inside each game are 2 players, a deck of 52 card objects, assigned to each of their appropriate data from the CSV
+    # so far, inside each game are 2 players,
+    # a deck of 52 card objects (12 for now), assigned to each of their appropriate data from the CSV
     # each person draws up to 5 cards at beginning of their turn, spends as much mana as they like.
     # your turn ends when you spend all your mana, or you have no cards left.
     def __init__(self):
@@ -258,8 +298,9 @@ class Game:
         self.hand_size = 5
         self.mp_pool = 0
         self.whosturn = 0
-        self.turncount = 0
+        self.turncount = 1
         self.deck_empty = False
+        self.playing = True
 
     def gameover(self):
         print('FINAL RESULT:')
@@ -268,7 +309,6 @@ class Game:
 
     # TODO: Game entrypoint
     def gameloop(self):
-        self.playing = True
         self.deck = self.cards.copy() * 3
 
         self.player1 = self.choosehero((choice(title='Choose a Hero', ls=[h.title for h in self.heroes])))
@@ -284,24 +324,33 @@ class Game:
         self.players = [self.player1, self.player2]
 
         while self.playing:
+
+            # process the player's turn
             self.process_turn(self.whosturn)
+
+            # give 1 mana to the players every other turn past the first turn
+            if self.turncount % 2 == 0:
+                self.mp_pool += 1
+
+            # if deck and both hands are empty, game ends (for now).
             if self.deck_empty and self.player1.hand_empty and self.player2.hand_empty:
                 self.playing = False
                 self.gameover()
+
+            # flip-flop who's turn it is.
             if self.whosturn == 1:
                 self.whosturn = 0
-            else:
+            elif self.whosturn == 0:
                 self.whosturn = 1
+
+            # increment turn for next turn
             self.turncount += 1
         print('Game Over. Hope you had fun playing!\nColin Burke - 2020')
 
-    # processes a single turn of a player
+    # processes a single turn of a player, by playerID (0,1,2,3)
     def process_turn(self, player_id):
         ourplayer: Player
         ourplayer = self.players[player_id]
-
-        # give 1 mana to the player every turn
-        self.mp_pool += 1
 
         # refresh player's mana pool
         ourplayer.mp += self.mp_pool
@@ -318,13 +367,13 @@ class Game:
         # allow player to process as many cards until voluntarily ending turn, or until turn ends
         ourplayer.endturn = False
         while not ourplayer.endturn:
-            titletext = ('======Turn {}, Player {}======'.format(self.turncount + 1, player_id + 1))
+            titletext = ('======Turn {}, Player {}======\n'.format(self.turncount, player_id + 1))
             if not ourplayer.hand:
                 print('Your hand is empty! End Turn.')
                 ourplayer.hand_empty = True
                 ourplayer.endturn = True
                 break
-            c = choice(titletext + '\n' + ourplayer.prettystatsstr() + '\nYour Hand:',
+            c = choice(titletext + '\n' + ourplayer.prettystatsstr() + '\n「YOUR HAND」',
                        ['{}: {} - Cost:{}'.format(c.title, c.info, c.cost) for c in ourplayer.hand])
 
             if c == 'p':
@@ -354,17 +403,19 @@ class Game:
         target = self.players[c.target]
 
         target.spend_mp(c.cost)
-        enter_to_continue()
-        target.mod_hp(c.hp)
-        enter_to_continue()
+        print(target.hp)
+        if target.mod_hp(c.hp):
+            enter_to_continue()
+            print(target.hp)
+        # enter_to_continue()
         target.mod_mp(c.mp)
-        enter_to_continue()
+        # enter_to_continue()
         target.mod_armor(c.armor)
-        enter_to_continue()
+        # enter_to_continue()
         target.mod_atk(c.atk)
-        enter_to_continue()
+        # enter_to_continue()
         target.mod_atk(c.atk)
-        enter_to_continue()
+        # enter_to_continue()
 
         # multiple turns for a card to last not implemented yet # TODO
         # ...
@@ -380,6 +431,10 @@ class Game:
         return Player(*self.herodata.pop(index))
 
     def randomcard(self):
+        """
+
+        :return: returns a random card object
+        """
         return self.deck.pop(random.randrange(len(self.deck)))
 
 
