@@ -1,0 +1,40 @@
+{
+  "$GMProject":"v1",
+  "%Name":"Knight of Cards",
+  "AudioGroups":[
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+  "configs":{
+    "children":[],
+    "name":"Default",
+  },
+  "defaultScriptType":1,
+  "Folders":[],
+  "ForcedPrefabProjectReferences":[],
+  "IncludedFiles":[],
+  "isEcma":false,
+  "LibraryEmitters":[],
+  "MetaData":{
+    "IDEVersion":"2024.14.0.207",
+  },
+  "name":"Knight of Cards",
+  "resources":[
+    {"id":{"name":"o_card_maker","path":"objects/o_card_maker/o_card_maker.yy",},},
+    {"id":{"name":"o_card","path":"objects/o_card/o_card.yy",},},
+    {"id":{"name":"o_deck_handler","path":"objects/o_deck_handler/o_deck_handler.yy",},},
+    {"id":{"name":"o_game","path":"objects/o_game/o_game.yy",},},
+    {"id":{"name":"o_player_stats","path":"objects/o_player_stats/o_player_stats.yy",},},
+    {"id":{"name":"o_player","path":"objects/o_player/o_player.yy",},},
+    {"id":{"name":"room_mainmenu","path":"rooms/room_mainmenu/room_mainmenu.yy",},},
+    {"id":{"name":"helper_functions","path":"scripts/helper_functions/helper_functions.yy",},},
+  ],
+  "resourceType":"GMProject",
+  "resourceVersion":"2.0",
+  "RoomOrderNodes":[
+    {"roomId":{"name":"room_mainmenu","path":"rooms/room_mainmenu/room_mainmenu.yy",},},
+  ],
+  "templateType":"game",
+  "TextureGroups":[
+    {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+  ],
+}
