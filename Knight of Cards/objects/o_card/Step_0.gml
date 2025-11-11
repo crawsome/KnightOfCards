@@ -32,16 +32,24 @@ if (!is_dragging) {
 } else {
     var new_x = mouse_x - drag_offset_x;
     var new_y = mouse_y - drag_offset_y;
-    velocity_x = new_x - prev_x;
-    velocity_y = new_y - prev_y;
+    
+    // Smooth velocity calculation to reduce jitter
+    var raw_velocity_x = new_x - prev_x;
+    var raw_velocity_y = new_y - prev_y;
+    velocity_x = lerp(velocity_x, raw_velocity_x, 0.5);
+    velocity_y = lerp(velocity_y, raw_velocity_y, 0.5);
+    
     prev_x = new_x;
     prev_y = new_y;
     
     x = new_x;
     y = new_y;
     
-    tilt_amount_x = clamp(velocity_x * 1.5, -50, 50);
-    tilt_amount_y = clamp(velocity_y * 1.5, -50, 50);
+    // Smooth tilt amount changes and reduce multiplier
+    var target_tilt_x = clamp(velocity_x * 0.8, -40, 40);
+    var target_tilt_y = clamp(velocity_y * 0.8, -40, 40);
+    tilt_amount_x = lerp(tilt_amount_x, target_tilt_x, 0.4);
+    tilt_amount_y = lerp(tilt_amount_y, target_tilt_y, 0.4);
     
     if (mouse_check_button_released(mb_left)) {
         is_dragging = false;

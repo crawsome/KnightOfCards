@@ -46,4 +46,12 @@ Check existing patterns first
 - Cards use room coordinates (mouse_x, mouse_y) for interaction, NOT GUI coordinates. Cards are drawn in room space.
 - When user reports bugs, FIX THEM IMMEDIATELY. Don't just check if they exist - actually implement the fixes.
 - o_player_stats instance is created in o_mainmenu when game starts. Don't create it elsewhere.
+- SURFACES: When drawing cards to surfaces, ALL content (background, border, text, stats) must be drawn to the surface. Text doesn't automatically appear - you must explicitly draw it to the surface. Draw text LAST after background and border.
+- SURFACES: Use `draw_primitive_begin_texture` with `draw_vertex_texture` for perspective transformations with custom corner positions. `draw_surface_general` does NOT support arbitrary corner positions - it only supports rotation/scaling.
+- SURFACES: Texture coordinates in `draw_vertex_texture` must be normalized (0-1), NOT pixel coordinates. Use (0,0), (1,0), (0,1), (1,1) for full surface, not (0,0), (card_width,0), etc.
+- SURFACES: Always clear surfaces properly with `draw_clear()` or `draw_clear_alpha()` before drawing content. Surfaces persist between frames.
+- CARD COLORS: Card colors are stored as global variables in o_game (12 total: 3 per suit - background, text, border). Cards read from these globals based on suit. Defaults: Diamonds (silver), Hearts (pink), Clubs (brown), Spades (black/white).
+- HOVER DETECTION: Use base card dimensions for hover detection, not scaled dimensions. Scale is applied during drawing, not for hit detection (avoids circular dependency).
+- PERSPECTIVE: When applying hover scale to perspective-transformed cards, calculate scaled dimensions first, then apply perspective transformations to the scaled dimensions.
+- DON'T REMOVE WORKING CODE: If stats/features were working before, don't remove conditional checks or change logic without explicit request. User said "THEY WERE JUST THERE BEFORE YOU DID THIS" - preserve existing functionality.
 Go Fuck yourself

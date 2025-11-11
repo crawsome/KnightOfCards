@@ -105,9 +105,9 @@ if (card_data.atk != 0) draw_text(card_width/2, card_text_y, "Atk: " + string(ca
 surface_reset_target();
 
 // Calculate perspective transformation based on tilt
-var tilt_factor_x = tilt_amount_x / 50.0; // Normalize to -1 to 1
-var tilt_factor_y = tilt_amount_y / 50.0; // Normalize to -1 to 1
-var perspective_scale = 1.0; // How much width perspective effect (STRONG for left-right)
+var tilt_factor_x = tilt_amount_x / 40.0; // Normalize to -1 to 1 (updated max)
+var tilt_factor_y = tilt_amount_y / 40.0; // Normalize to -1 to 1 (updated max)
+var perspective_scale = 0.7; // Reduced from 1.0 for smoother effect
 var height_perspective = 0.15; // How much height perspective effect (REDUCED for top-down)
 
 // Apply hover scale
@@ -129,10 +129,10 @@ var top_scale = 1.0 - (tilt_factor_y * height_perspective);
 var bottom_scale = 1.0 + (tilt_factor_y * height_perspective);
 
 // Horizontal offset for depth: closer side moves toward center
-var horizontal_offset = abs(tilt_factor_x) * perspective_scale * card_width * 0.2;
+var horizontal_offset = abs(tilt_factor_x) * perspective_scale * card_width * 0.15; // Reduced from 0.2
 
 // Vertical offset for depth: closer side moves up/down
-var vertical_offset = abs(tilt_factor_y) * height_perspective * card_height * 0.3;
+var vertical_offset = abs(tilt_factor_y) * height_perspective * card_height * 0.2; // Reduced from 0.3
 
 // Top corners - apply both horizontal and vertical perspective with hover scale
 var top_left_x = center_x - (scaled_width / 2) * left_scale * top_scale;
