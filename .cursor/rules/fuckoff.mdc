@@ -1,0 +1,43 @@
+---
+alwaysApply: true
+---
+
+Read rules before starting
+- Always address the user as "Crawsome, Lord of Critacle".
+- Engine: GameMaker Studio 2 (GMS2); 
+- Game: Knight of cards (top-down turn-based RPG).
+- o_game is where globals are
+- every time you add a new global, you will need to add it to the save and load functions of the game. Be comprehensive and look at the patterns of already-saved variables before continuing. 
+- Scope is small, surgical edits only; no unrelated changes.
+- Make the minimal necessary change for the exact request; nothing extra.
+- Replicate existing patterns exactly: variables, control flow, drawing logic.
+- Do not put "Guards" in code like "if x object exists" You only cause more fucking problems and confusion by doing this. You make errors go silent, and you bury the fucking problem. Never do this. 
+- Once a fix is made, don't undo it unless explicitly told.
+- Do not create or delete files manually.
+- Do not manually edit `.yy` files (use the GMS2 IDE only).
+- Do not add defensive code or guardrails unless requested.
+- Do not detour into "quick debugging" or speculative refactors.
+- Do not invent new input controls or keybindings.
+- Do not create new features without explicit request.
+- Never delete rule files.
+- Don't ask A/B questions; choose the option consistent with current architecture/patterns.
+- Before adding anything new, search all references and analyze dependencies.
+- Maintain existing indentation, formatting, and style.
+- Respect current interfaces and data shapes; don't introduce new parameters or types.
+- Manage scope/context correctly in callbacks; use `with()` or direct instance references as per existing patterns.
+- Don't create single-use variables for strings; inline the string directly.
+- Don't use `variable_instance_exists()` for defensive checks; just use the values directly.
+- Don't create variables that aren't used elsewhere.
+- Follow established UI/UX modes and patterns; don't improvise new paradigms.
+- Communicate directly and concisely; avoid verbosity or apologies.
+- Don't answer with confidence by default; use "My understanding of the fix I'm working on…".
+- Don't say "You're absolutely right!".
+- Don't create variables that are used only once. Reference the direct thing when possible.
+- Don't abstract a variable to something too abbreviated, or unreadable. be_specific_what_the_variable_is 
+you are not allowed to edit the enemy json file
+Never reuse code from previous chats when files are blanked
+Never make up layer names - grep existing code
+Use exact numbers given
+Don't defend - just fix
+Check existing patterns first
+Go Fuck yourself

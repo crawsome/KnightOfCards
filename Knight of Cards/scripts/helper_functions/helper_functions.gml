@@ -11,6 +11,18 @@ function sign(num) {
     return "";
 }
 
+/// @description Draw text with scale
+/// @param x
+/// @param y
+/// @param text
+/// @param scale_x
+/// @param scale_y
+/// @param color
+function draw_text_scaled(xx, yy, text, scale_x, scale_y, color) {
+    draw_set_color(color);
+    draw_text_transformed(xx, yy, text, scale_x, scale_y, 0);
+}
+
 // Suit symbols
 var suits = {
     "Spades": "♠",
@@ -24,8 +36,17 @@ var suits = {
 /// @description Load CSV file and return array of rows (each row is array of values)
 /// @param filename
 function csv_load(filename) {
+    show_debug_message("Attempting to load CSV: " + filename);
     var rows = [];
     var file = file_text_open_read(filename);
+    
+    if (file == -1) {
+        show_debug_message("Error: Could not open file: " + filename);
+        show_debug_message("Working directory: " + working_directory);
+        return rows;
+    }
+    
+    show_debug_message("File opened successfully: " + filename);
     
     while (!file_text_eof(file)) {
         var line = file_text_read_string(file);
@@ -215,7 +236,7 @@ function player_spend_mp(player, cost) {
 
 /// @description Load cards from CSV file
 function game_load_cards_from_csv() {
-    var rows = csv_load("csv/cardinfo.csv");
+    var rows = csv_load("cardinfo.csv");
     var cards = [];
     
     // Skip header row (index 0)
@@ -235,21 +256,27 @@ function game_load_cards_from_csv() {
 
 /// @description Load heroes from CSV file
 function game_load_heroes_from_csv() {
-    var rows = csv_load("csv/heroes.csv");
+    show_debug_message("Loading heroes from CSV...");
+    show_debug_message("Working directory: " + working_directory);
+    var rows = csv_load("heroes.csv");
+    show_debug_message("CSV rows loaded: " + string(array_length(rows)));
     var heroes = [];
     
     // Skip header row (index 0)
     for (var i = 1; i < array_length(rows); i++) {
         var row = rows[i];
+        show_debug_message("Row " + string(i) + " has " + string(array_length(row)) + " columns");
         if (array_length(row) >= 11) {
             var hero = player_create(
                 row[0], row[1], row[2], row[3], row[4], row[5],
                 row[6], row[7], row[8], row[9], row[10]
             );
             array_push(heroes, hero);
+            show_debug_message("Loaded hero: " + hero.title);
         }
     }
     
+    show_debug_message("Total heroes loaded: " + string(array_length(heroes)));
     return heroes;
 }
 
@@ -292,9 +319,10 @@ function game_draw_card(deck) {
 
 /// @description Process card effects on target player
 /// @param card
-/// @param target_player
-function game_process_card(card, target_player) {
-    player_spend_mp(target_player, card.cost);
+/// @param current_player (player who plays the card)
+/// @param target_player (player who receives the effects)
+function game_process_card(card, current_player, target_player) {
+    player_spend_mp(current_player, card.cost);
     player_mod_hp(target_player, card.hp);
     player_mod_mp(target_player, card.mp);
     player_mod_armor(target_player, card.armor);

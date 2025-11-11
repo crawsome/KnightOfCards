@@ -11,7 +11,10 @@
   "defaultScriptType":1,
   "Folders":[],
   "ForcedPrefabProjectReferences":[],
-  "IncludedFiles":[],
+  "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"cardinfo.csv","CopyToMask":-1,"filePath":"datafiles","name":"cardinfo.csv","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"heroes.csv","CopyToMask":-1,"filePath":"datafiles","name":"heroes.csv","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+  ],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
@@ -19,11 +22,16 @@
   },
   "name":"Knight of Cards",
   "resources":[
+    {"id":{"name":"f_font_large","path":"fonts/f_font_large/f_font_large.yy",},},
+    {"id":{"name":"f_font_small","path":"fonts/f_font_small/f_font_small.yy",},},
+    {"id":{"name":"f_menu_font_large","path":"fonts/f_menu_font_large/f_menu_font_large.yy",},},
+    {"id":{"name":"f_menu_font_small","path":"fonts/f_menu_font_small/f_menu_font_small.yy",},},
     {"id":{"name":"o_card_maker","path":"objects/o_card_maker/o_card_maker.yy",},},
     {"id":{"name":"o_card","path":"objects/o_card/o_card.yy",},},
     {"id":{"name":"o_deck_handler","path":"objects/o_deck_handler/o_deck_handler.yy",},},
     {"id":{"name":"o_game","path":"objects/o_game/o_game.yy",},},
     {"id":{"name":"o_logo","path":"objects/o_logo/o_logo.yy",},},
+    {"id":{"name":"o_mainmenu","path":"objects/o_mainmenu/o_mainmenu.yy",},},
     {"id":{"name":"o_player_stats","path":"objects/o_player_stats/o_player_stats.yy",},},
     {"id":{"name":"o_player","path":"objects/o_player/o_player.yy",},},
     {"id":{"name":"room_mainmenu","path":"rooms/room_mainmenu/room_mainmenu.yy",},},
