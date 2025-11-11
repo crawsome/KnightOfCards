@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"helper_functions",
   "parent":{
-    "name":"Knight of Cards",
-    "path":"Knight of Cards.yyp",
+    "name":"scripts",
+    "path":"folders/scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,13 +1,56 @@
 uid,title,card_strength,card_name,suit,color,category,cost,hp,mp,armor,atk,target,turns,info,lore,art
-0,Brace Yourself!,2,2,Diamonds,Red,Defense,2,0,0,2,0,0,1,Increase hero armor by 2,"""Only a fool travels a battlefield with their shield relaxed."" - Thorisus Maghartus",https://github.com/crawsome/knightofcards/img/card0.png
-1,Concentrate,3,3,Diamonds,Red,Defense,3,0,0,3,0,0,1,Increase hero armor by 4,"""Keep an open mind to new ideas, and a hardened mind to old tricks"" - Magus Dhyffrys.",https://github.com/crawsome/knightofcards/img/card1.png
-2,Find Cover,4,4,Diamonds,Red,Defense,4,0,0,4,0,0,1,Increase hero armor by 7,A large nearby boulder provides a time-honoured method to absorb some damage.,https://github.com/crawsome/knightofcards/img/card2.png
-13,Wear-Down,2,2,Spades,Black,Ability,2,-2,-2,0,1,1,2,"destroy 2 MP, 2HP of opponent","""Give them the runaround, until they can no longer run around"" - Master Tactician Colin",https://github.com/crawsome/knightofcards/img/card13.png
-14,Degrade Armor,3,3,Spades,Black,Ability,3,-2,0,-3,0,1,3,"destroy 3HP, 3 Armor of opponent","""I suggest you sit down, ask for help, and get used to it."" - Borne Aarthard",https://github.com/crawsome/knightofcards/img/card14.png
-15,Sunder Armor,4,4,Spades,Black,Ability,4,-2,-2,-2,0,1,2,"destroy 2MP, 2HP, 2 Armor of opponent","""Hit them where it's supposed to hurt until it hurts."" - Unknown persistent soldier",https://github.com/crawsome/knightofcards/img/card15.png
-26,Attack,2,2,Clubs,Black,Attack,2,-3,0,0,0,1,0,Deal 2 damage to opponent,"""The most primitive methods of getting what you want are sometimes within arms reach.""",https://github.com/crawsome/knightofcards/img/card26.png
-27,Burn,3,3,Clubs,Black,Attack,3,-2,0,0,0,1,2,Deal 6 damage to opponent,"""Humanity has a cruel and ironic tendency to burn and stone things it doesn't understand""",https://github.com/crawsome/knightofcards/img/card27.png
-28,Shock,4,4,Clubs,Black,Attack,4,-1,0,0,-1,1,0,Deal 8 damage to opponent,"""Once the current of the heavens had been harnessed, quality of life was improved for all those who treaded carefully.""",https://github.com/crawsome/knightofcards/img/card28.png
-39,Pray,2,2,Hearts,Red,Support,2,4,0,0,0,0,0,Restore 4HP to your hero,"""In this day and age, the ones above us usually don't screen their calls.""",https://github.com/crawsome/knightofcards/img/card39.png
-40,Cleanse,3,3,Hearts,Red,Support,3,6,0,0,0,0,0,Restore 6HP to your hero,"""The regrowing arts sometimes regrows a bit too much, so it leave some options to dispose with the extra... you.""",https://github.com/crawsome/knightofcards/img/card40.png
-41,Clinical Heal,4,4,Hearts,Red,Support,4,8,0,0,0,0,0,Restore 8HP to your hero," ""Sometimes seeing an expert with the right resources is what you really need.""",https://github.com/crawsome/knightofcards/img/card41.png
+0,Brace Yourself!,2,2,Diamonds,Red,Defense,2,0,0,2,0,0,1,Increase hero armor by 2,Only a fool travels a battlefield with their shield relaxed. - Thorisus Maghartus,https://github.com/crawsome/knightofcards/img/card0.png
+1,Concentrate,3,3,Diamonds,Red,Defense,3,0,0,3,0,0,1,Increase hero armor by 3,"Keep an open mind to new ideas, and a hardened mind to old tricks - Magus Dhyffrys.",https://github.com/crawsome/knightofcards/img/card1.png
+2,Find Cover,4,4,Diamonds,Red,Defense,4,0,0,4,0,0,1,Increase hero armor by 4,A large nearby boulder provides a time-honoured method to absorb some damage.,https://github.com/crawsome/knightofcards/img/card2.png
+3,Reinfornced Defense,5,5,Diamonds,Red,Defense,2,0,0,0,0,0,2,decrease next enemy attack by up to 3 damage until next turn,,https://github.com/crawsome/knightofcards/img/card3.png 
+4,Stoneskin,6,6,Diamonds,Red,Defense,3,0,0,0,0,0,3,decrease next enemy attack by up to 5 damage until next turn,,https://github.com/crawsome/knightofcards/img/card4.png
+5,Riposte,7,7,Diamonds,Red,Defense,3,0,0,0,0,0,1,apply spikes for 1 turn,,https://github.com/crawsome/knightofcards/img/card5.png
+6,Defensive Potency ,8,8,Diamonds,Red,Defense,4,0,0,0,0,0,3,Increase hero armor by 8,,https://github.com/crawsome/knightofcards/img/card6.png
+7,Defensive Planning,9,9,Diamonds,Red,Defense,4,0,0,0,0,0,2,"roll d6, 3 to dodge ",,https://github.com/crawsome/knightofcards/img/card7.png
+8,Spikeskin,10,10,Diamonds,Red,Defense,5,0,0,0,0,0,0,Apply spikes for 4 turns,,https://github.com/crawsome/knightofcards/img/card8.png
+9,Doubledodge,11,J,Diamonds,Red,Defense,5,0,0,0,0,0,0,roll d6 twice. > 3 to dodge ,,https://github.com/crawsome/knightofcards/img/card9.png
+10,Defensive Efficiency,12,Q,Diamonds,Red,Defense,6,0,0,0,0,0,0,double your armor,,https://github.com/crawsome/knightofcards/img/card10.png
+11,King's Defense,13,K,Diamonds,Red,Defense,6,4,0,0,0,0,0,"Increase armor by 3, double your armor. ",,https://github.com/crawsome/knightofcards/img/card11.png
+12,Parry,14,A,Diamonds,Red,Defense,7,4,0,0,0,0,3,"Play face down. Next physical attack against you is ignored, your opponent's turn ends. ",,https://github.com/crawsome/knightofcards/img/card12.png
+13,Wear-Down,2,2,Spades,Black,Ability,2,-2,-2,0,1,1,2,"destroy 2 MP, 2HP of opponent","Give them the runaround, until they can no longer run around - Master Tactician Colin",https://github.com/crawsome/knightofcards/img/card13.png
+14,Degrade Armor,3,3,Spades,Black,Ability,3,-2,0,-3,0,1,3,"destroy 3HP, 3 Armor of opponent","I suggest you sit down, ask for help, and get used to it. - Borne Aarthard",https://github.com/crawsome/knightofcards/img/card14.png
+15,Sunder Armor,4,4,Spades,Black,Ability,4,-2,-2,-2,0,1,2,"destroy 2MP, 2HP, 2 Armor of opponent",Hit them where it's supposed to hurt until it hurts. - Unknown persistent soldier,https://github.com/crawsome/knightofcards/img/card15.png
+16,Weak,5,5,Spades,Black,Ability,2,0,0,0,-1,1,2,"Enemy is weakened for next 2 turns, 1 less physical damage for next 2 turns",,https://github.com/crawsome/knightofcards/img/card16.png
+17,Slow,6,6,Spades,Black,Ability,3,0,0,0,0,1,2,Enemy has 2 less MP for the next 2 turns.,,https://github.com/crawsome/knightofcards/img/card17.png
+18,Leech,7,7,Spades,Black,Ability,3,0,0,0,0,1,2,Enemy loses 4HP over the next 2 turns and you receive it as health. ,,https://github.com/crawsome/knightofcards/img/card18.png
+19,Choke,8,8,Spades,Black,Ability,4,0,0,0,0,1,2,Enemy loses 5 HP and loses 1MP next 2 turns.,,"https://github.com/crawsome/knightofcards/img/card19.png
+"
+20,Drench,9,9,Spades,Black,Ability,4,0,0,0,0,1,0,Enemy is drenched for 2 turns. Any electric attacks deal 200%.,,https://github.com/crawsome/knightofcards/img/card20.png
+21,Paralyze,10,10,Spades,Black,Ability,5,0,0,0,0,1,2,"Enemy is paralyzed for 2 turns. Each turn, enemy has x+10% chance to break out of it. ",,https://github.com/crawsome/knightofcards/img/card21.png
+22,Insanity,11,J,Spades,Black,Ability,5,0,0,0,0,1,2,"Enemy is insane for 2 turns. All card costs are randomized (+/-4). If enemy spends 5 MP on cards, insanity is removed. ",,"https://github.com/crawsome/knightofcards/img/card22.png
+"
+23,Confuse,12,Q,Spades,Black,Ability,6,0,0,0,0,1,2,Enemy is confused for 2 turns. ,,https://github.com/crawsome/knightofcards/img/card23.png
+24,Dessicate,13,K,Spades,Black,Ability,6,0,0,0,0,1,0,Enemy is dessicated. Fire attacks deal 200% damage,,https://github.com/crawsome/knightofcards/img/card24.png
+25,Damage Inversion,14,A,Spades,Black,Ability,7,0,0,0,0,0,2,Play face down. Flip up and all attacks against you are instead healing you for the damaged recieved. ,All enemy's attacks up to 4 damage heal instead for the next 2 turns. ,https://github.com/crawsome/knightofcards/img/card25.png
+26,Attack,2,2,Clubs,Black,Attack,2,-3,0,0,0,1,0,Deal 1 damage to opponent,The most primitive methods of getting what you want are sometimes within arms reach.,https://github.com/crawsome/knightofcards/img/card26.png
+27,Burn,3,3,Clubs,Black,Attack,3,-2,0,0,0,1,2,Deal 2 damage to opponent,Humanity has a cruel and ironic tendency to burn and stone things it doesn't understand,https://github.com/crawsome/knightofcards/img/card27.png
+28,Shock,4,4,Clubs,Black,Attack,4,-1,0,0,-1,1,0,Deal 3 damage to opponent,"Once the current of the heavens had been harnessed, quality of life was improved for all those who treaded carefully.",https://github.com/crawsome/knightofcards/img/card28.png
+29,Cleave,5,5,Clubs,Black,Attack,2,0,0,0,0,1,0,Deal 4 damage to opponent. Roll d6 >3 for additional 2 damage. ,,https://github.com/crawsome/knightofcards/img/card29.png
+30,Medium Attack,6,6,Clubs,Black,Attack,3,0,0,0,0,1,0,Deal 6 damage to opponent,,https://github.com/crawsome/knightofcards/img/card30.png
+31,Electrocute,7,7,Clubs,Black,Attack,3,0,0,0,0,1,0,Medium attack d6 >3 for 1 turn of paralysis,,"https://github.com/crawsome/knightofcards/img/card31.png
+"
+32,Torch,8,8,Clubs,Black,Attack,4,0,0,0,0,1,0,Medium attack d6 >3 for 2 turn of burn,,https://github.com/crawsome/knightofcards/img/card32.png
+33,Blast,9,9,Clubs,Black,Attack,4,0,0,0,0,1,0,Deal 8 damage to opponent,,https://github.com/crawsome/knightofcards/img/card33.png
+34,Tackle,10,10,Clubs,Black,Attack,5,0,0,0,0,1,0,"deal 5 damage to oppnent. Roll d6 6, and it will move to knock out the other player. ",,https://github.com/crawsome/knightofcards/img/card34.png
+35,Jettison,11,J,Clubs,Black,Attack,5,0,0,0,0,1,0,"Discard a cards. Add their cost, deal half as damage to enemy. ","Your axe gets lighter if you get rid of the hilt, and hey! Your axe is now part of your forearm! - Cubby McClubkin. ",https://github.com/crawsome/knightofcards/img/card35.png
+36,Meatshield,12,Q,Clubs,Black,Attack,6,0,0,0,0,1,0,Gain armor equal to 8 of enemy's HP. Damage enemy for 4HP.,,https://github.com/crawsome/knightofcards/img/card36.png
+37,Ignite,13,K,Clubs,Black,Attack,6,0,0,0,0,1,0,Very Hard attack with DOT,,https://github.com/crawsome/knightofcards/img/card37.png
+38,Steelstorm,14,A,Clubs,Black,Attack,7,0,0,0,0,1,0,"Play face-down. Flip up during an attack phase. This phase, alll direct damage spells deal 2 extra damage each. ",Very Hard Attack with AOE chance of paralysis,https://github.com/crawsome/knightofcards/img/card38.png
+39,Pray,2,2,Hearts,Red,Support,2,4,0,0,0,0,0,Restore 4HP to your hero,"In this day and age, the ones above us usually don't screen their calls.",https://github.com/crawsome/knightofcards/img/card39.png
+40,Cleanse,3,3,Hearts,Red,Support,3,6,0,0,0,0,0,Restore 6HP to your hero,"The regrowing arts sometimes regrows a bit too much, so it leave some options to dispose with the extra... you.",https://github.com/crawsome/knightofcards/img/card40.png
+41,Clinical Heal,4,4,Hearts,Red,Support,4,8,0,0,0,0,0,Restore 8HP to your hero, Sometimes seeing an expert with the right resources is what you really need.,https://github.com/crawsome/knightofcards/img/card41.png
+42,Regen,5,5,Hearts,Red,Support,2,2,0,0,0,0,0,heal 2 hp/ turn for 3 turns,,https://github.com/crawsome/knightofcards/img/card42.png
+43,Insight,6,6,Hearts,Red,Support,3,0,0,0,0,0,0,take a card out of your discard deck up to 3 cost and play it,,https://github.com/crawsome/knightofcards/img/card43.png
+44,Calm,7,7,Hearts,Red,Support,3,0,0,0,0,1,0,"Next turn, enemy player loses up to 3 MP",,https://github.com/crawsome/knightofcards/img/card44.png
+45,Strong,8,8,Hearts,Red,Support,4,0,0,0,0,0,0,"for the next 3 turns, attack cards deal 3 extra damage",,https://github.com/crawsome/knightofcards/img/card45.png
+46,Bless Armor,9,9,Hearts,Red,Support,4,0,0,0,0,0,0,"for the next 3 turns, nullify up to 4 damage per turn.",,https://github.com/crawsome/knightofcards/img/card46.png
+47,Great Heal,10,10,Hearts,Red,Support,5,9,0,0,0,0,0,heal yourself for 9HP,,https://github.com/crawsome/knightofcards/img/card47.png
+48,Haste,11,J,Hearts,Red,Support,5,0,0,0,0,0,3,give yourself 2 more MP per turn for the next 3 turns,,https://github.com/crawsome/knightofcards/img/card48.png
+49,Absolve,12,Q,Hearts,Red,Support,6,6,0,0,0,0,6,"clear yourself of all negative ailments, deal 6hp to enemy and heal 6 HP",,https://github.com/crawsome/knightofcards/img/card49.png
+50,Full Heal,13,K,Hearts,Red,Support,6,20,0,0,0,0,0,fully heal yourself,,https://github.com/crawsome/knightofcards/img/card50.png
+51,Angel,14,A,Hearts,Red,Support,7,0,0,0,0,0,0,"Play face down. For the next 3 turns, prevents one death, and gives a rez to 1/4 HP","In the stories of the young, some tell of a being who rescues those in peril, but only when enough loose mana is around",https://github.com/crawsome/knightofcards/img/card51.png

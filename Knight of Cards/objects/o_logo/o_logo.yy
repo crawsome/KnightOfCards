@@ -8,8 +8,8 @@
   "name":"o_logo",
   "overriddenProperties":[],
   "parent":{
-    "name":"Knight of Cards",
-    "path":"Knight of Cards.yyp",
+    "name":"objects",
+    "path":"folders/objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

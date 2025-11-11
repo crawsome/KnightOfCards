@@ -9,8 +9,8 @@
   "name":"o_card_maker",
   "overriddenProperties":[],
   "parent":{
-    "name":"Knight of Cards",
-    "path":"Knight of Cards.yyp",
+    "name":"objects",
+    "path":"folders/objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

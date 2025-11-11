@@ -40,4 +40,10 @@ Never make up layer names - grep existing code
 Use exact numbers given
 Don't defend - just fix
 Check existing patterns first
+- UI drawing code goes in o_player_stats/Draw_64.gml, NOT o_game. o_player_stats already has Draw_64 event registered.
+- game_process_card function signature: game_process_card(card, current_player, target_player) - current_player pays the cost, target_player receives effects. NEVER spend mana from target_player.
+- Enemy AI: When whosturn == 1, implement AI that plays cards automatically. Check for playable cards (cost <= mp), play random one, or end turn if none available.
+- Cards use room coordinates (mouse_x, mouse_y) for interaction, NOT GUI coordinates. Cards are drawn in room space.
+- When user reports bugs, FIX THEM IMMEDIATELY. Don't just check if they exist - actually implement the fixes.
+- o_player_stats instance is created in o_mainmenu when game starts. Don't create it elsewhere.
 Go Fuck yourself

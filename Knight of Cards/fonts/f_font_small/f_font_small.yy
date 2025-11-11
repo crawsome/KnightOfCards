@@ -191,8 +191,8 @@
   "maintainGms1Font":false,
   "name":"f_font_small",
   "parent":{
-    "name":"Knight of Cards",
-    "path":"Knight of Cards.yyp",
+    "name":"fonts",
+    "path":"folders/fonts.yy",
   },
   "pointRounding":0,
   "ranges":[
