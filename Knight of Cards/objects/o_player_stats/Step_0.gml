@@ -28,7 +28,7 @@ if (attack_button_hover && mouse_check_button_pressed(mb_left)) {
     var damage = max(1, current_player.atk - other_player.armor);
     player_mod_hp(other_player, -damage);
     
-    combat_log_add(o_game.whosturn, "Hero Attack dealt " + string(damage) + " damage");
+    combat_log_add(o_game.whosturn, "Hero Attack dealt " + string(damage) + " damage to " + other_player.title);
     
     show_debug_message("Base attack! " + string(damage) + " damage dealt to " + other_player.title);
     

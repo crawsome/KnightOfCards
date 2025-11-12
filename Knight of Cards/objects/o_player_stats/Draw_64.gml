@@ -57,7 +57,7 @@ draw_set_font(f_menu_font_large);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-var current_player = o_game.players[o_game.whosturn];
+var current_player = o_game.players[0];
 
 draw_set_color(c_yellow);
 draw_text(20, 20, "TURN " + string(o_game.turncount) + " - PLAYER " + string(o_game.whosturn + 1));

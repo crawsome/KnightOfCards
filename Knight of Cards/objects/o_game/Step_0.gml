@@ -85,7 +85,7 @@ if (game_state == "playing") {
         if (hero_attack_can_kill && current_player.atk > 0) {
             var damage = max(1, current_player.atk - players[0].armor);
             player_mod_hp(players[0], -damage);
-            combat_log_add(whosturn, "Hero Attack dealt " + string(damage) + " damage");
+            combat_log_add(whosturn, "Hero Attack dealt " + string(damage) + " damage to " + players[0].title);
             
             current_player.mp = 0;
             current_player.endturn = true;
@@ -245,7 +245,7 @@ if (game_state == "playing") {
                 if (current_player.atk > 0) {
                     var damage = max(1, current_player.atk - players[0].armor);
                     player_mod_hp(players[0], -damage);
-                    combat_log_add(whosturn, "Hero Attack dealt " + string(damage) + " damage");
+                    combat_log_add(whosturn, "Hero Attack dealt " + string(damage) + " damage to " + players[0].title);
                     
                     current_player.mp = 0;
                     current_player.endturn = true;
@@ -303,7 +303,7 @@ if (game_state == "playing") {
             if (current_player.atk > 0) {
                 var damage = max(1, current_player.atk - players[0].armor);
                 player_mod_hp(players[0], -damage);
-                combat_log_add(whosturn, "Hero Attack dealt " + string(damage) + " damage");
+                combat_log_add(whosturn, "Hero Attack dealt " + string(damage) + " damage to " + players[0].title);
                 
                 current_player.mp = 0;
                 current_player.endturn = true;

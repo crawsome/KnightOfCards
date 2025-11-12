@@ -336,7 +336,7 @@ function game_process_card(card, current_player, target_player) {
     if (card.armor != 0) effects[array_length(effects)] = (card.armor > 0 ? "+" : "") + string(card.armor) + " Armor";
     if (card.atk != 0) effects[array_length(effects)] = (card.atk > 0 ? "+" : "") + string(card.atk) + " ATK";
     
-    var target_name = (current_player == target_player) ? "self" : "enemy";
+    var target_name = target_player.title;
     var effect_text = "";
     if (array_length(effects) > 0) {
         effect_text = " (";

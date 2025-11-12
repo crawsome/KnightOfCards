@@ -10,7 +10,7 @@ draw_set_font(f_menu_font_large);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-var other_player = o_game.players[o_game.whosturn == 0 ? 1 : 0];
+var other_player = o_game.players[1];
 
 draw_set_color(c_yellow);
 draw_text(gui_w - 350, 20, "ENEMY");
