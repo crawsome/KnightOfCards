@@ -280,14 +280,12 @@ function game_load_heroes_from_csv() {
     return heroes;
 }
 
-/// @description Create deck from cards array (3 copies)
+/// @description Create deck from cards array
 /// @param cards_array
 function game_create_deck(cards_array) {
     var deck = [];
-    for (var i = 0; i < 3; i++) {
-        for (var j = 0; j < array_length(cards_array); j++) {
-            array_push(deck, cards_array[j]);
-        }
+    for (var j = 0; j < array_length(cards_array); j++) {
+        array_push(deck, cards_array[j]);
     }
     return deck;
 }
@@ -322,11 +320,56 @@ function game_draw_card(deck) {
 /// @param current_player (player who plays the card)
 /// @param target_player (player who receives the effects)
 function game_process_card(card, current_player, target_player) {
+    var current_player_id = 0;
+    for (var i = 0; i < array_length(o_game.players); i++) {
+        if (o_game.players[i] == current_player) {
+            current_player_id = i;
+            break;
+        }
+    }
+    
     player_spend_mp(current_player, card.cost);
+    
+    var effects = [];
+    if (card.hp != 0) effects[array_length(effects)] = (card.hp > 0 ? "+" : "") + string(card.hp) + " HP";
+    if (card.mp != 0) effects[array_length(effects)] = (card.mp > 0 ? "+" : "") + string(card.mp) + " MP";
+    if (card.armor != 0) effects[array_length(effects)] = (card.armor > 0 ? "+" : "") + string(card.armor) + " Armor";
+    if (card.atk != 0) effects[array_length(effects)] = (card.atk > 0 ? "+" : "") + string(card.atk) + " ATK";
+    
+    var target_name = (current_player == target_player) ? "self" : "enemy";
+    var effect_text = "";
+    if (array_length(effects) > 0) {
+        effect_text = " (";
+        for (var i = 0; i < array_length(effects); i++) {
+            effect_text += effects[i];
+            if (i < array_length(effects) - 1) effect_text += ", ";
+        }
+        effect_text += ")";
+    }
+    
+    combat_log_add(current_player_id, "Played " + card.title + " on " + target_name + effect_text);
+    
     player_mod_hp(target_player, card.hp);
     player_mod_mp(target_player, card.mp);
     player_mod_armor(target_player, card.armor);
     player_mod_atk(target_player, card.atk);
+}
+
+/// @description Add entry to combat log
+/// @param player_id (0 or 1)
+/// @param message
+function combat_log_add(player_id, message) {
+    var log_entry = {
+        player_id: player_id,
+        message: message,
+        turn: o_game.turncount
+    };
+    array_push(o_game.combat_log, log_entry);
+    
+    // Limit log size to prevent memory issues
+    if (array_length(o_game.combat_log) > 100) {
+        array_delete(o_game.combat_log, 0, 1);
+    }
 }
 
 /// @description Check game over conditions

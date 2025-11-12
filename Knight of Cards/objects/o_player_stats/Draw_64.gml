@@ -11,7 +11,6 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
 var current_player = o_game.players[o_game.whosturn];
-var other_player = o_game.players[o_game.whosturn == 0 ? 1 : 0];
 
 draw_set_color(c_yellow);
 draw_text(20, 20, "TURN " + string(o_game.turncount) + " - PLAYER " + string(o_game.whosturn + 1));
@@ -47,57 +46,11 @@ if (variable_struct_exists(current_player, "status_ailments") && array_length(cu
     }
 }
 
-draw_set_color(c_red);
-draw_text(gui_w - 300, 60, "Enemy: " + other_player.title);
-draw_text(gui_w - 300, 85, "HP: " + string(other_player.hp) + " MP: " + string(other_player.mp));
-draw_text(gui_w - 300, 110, "ATK: " + string(other_player.atk) + " DEF: " + string(other_player.armor));
-
-// Draw enemy status ailments if they exist
-var enemy_status_y = 135;
-if (variable_struct_exists(other_player, "status_ailments") && array_length(other_player.status_ailments) > 0) {
-    draw_set_color(c_orange);
-    draw_text(gui_w - 300, enemy_status_y, "STATUS:");
-    enemy_status_y += 20;
-    for (var i = 0; i < array_length(other_player.status_ailments); i++) {
-        var ailment = other_player.status_ailments[i];
-        var ailment_text = "";
-        if (variable_struct_exists(ailment, "name")) {
-            ailment_text = ailment.name;
-            if (variable_struct_exists(ailment, "turns") && ailment.turns > 0) {
-                ailment_text += " (" + string(ailment.turns) + " turns)";
-            }
-        } else {
-            ailment_text = string(ailment);
-        }
-        draw_set_color(c_yellow);
-        draw_text(gui_w - 280, enemy_status_y, ailment_text);
-        enemy_status_y += 18;
-    }
-}
-
-draw_set_color(c_lime);
-draw_text(20, 150, "YOUR HAND:");
-
-var hand_y = 190;
-var line_height = 30;
-
+// Set hand_empty flag
 if (array_length(current_player.hand) == 0) {
-    draw_set_color(c_gray);
-    draw_text(40, hand_y, "Hand is empty!");
     current_player.hand_empty = true;
 } else {
     current_player.hand_empty = false;
-    for (var i = 0; i < array_length(current_player.hand); i++) {
-        var card = current_player.hand[i];
-        var can_afford = (card.cost <= current_player.mp);
-        
-        draw_set_color(can_afford ? c_white : c_gray);
-        
-        var card_text = string(i + 1) + ". " + card.title + " - Cost: " + string(card.cost) + "MP";
-        draw_text(40, hand_y, card_text);
-        
-        hand_y += line_height;
-    }
 }
 
 var button_x = gui_w - 200;

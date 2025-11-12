@@ -54,4 +54,18 @@ Check existing patterns first
 - HOVER DETECTION: Use base card dimensions for hover detection, not scaled dimensions. Scale is applied during drawing, not for hit detection (avoids circular dependency).
 - PERSPECTIVE: When applying hover scale to perspective-transformed cards, calculate scaled dimensions first, then apply perspective transformations to the scaled dimensions.
 - DON'T REMOVE WORKING CODE: If stats/features were working before, don't remove conditional checks or change logic without explicit request. User said "THEY WERE JUST THERE BEFORE YOU DID THIS" - preserve existing functionality.
+- BUTTON TEXT COLORS: Button text must contrast with background. Yellow/lime buttons need black text. Red/orange/blue buttons need white text. Don't use the same color as the button background.
+- BUTTON LAYOUT: Buttons can be stacked vertically (above/below) on the right side. Calculate positions: button_y - (button_h * N) - spacing for stacking multiple buttons.
+- HERO ATTACK: Uses current_player.atk vs other_player.armor. Damage = max(1, ATK - DEF). Always deals at least 1 damage. Uses current stat values (includes buffs/debuffs from cards). Ends turn after attacking.
+- REDRAW BUTTON: Shuffles current hand back into shared deck, shuffles deck, draws new hand, then forfeits turn. Deck is shared (52 cards total) between players.
+- STATUS AILMENTS: Check if status_ailments array exists before displaying. Display ailment name and turns remaining if applicable. Show for both current player and enemy player on their respective sides of screen.
+- DECK MANAGEMENT: Deck is shared between players (52 cards total). When shuffling hand back into deck, add cards to the shared deck array, then shuffle the entire deck.
+- SMOOTHING: Use lerp for velocity calculations and tilt transitions to reduce jitter. Smooth velocity: lerp(velocity_x, raw_velocity_x, 0.5). Smooth tilt: lerp(tilt_amount_x, target_tilt_x, 0.4).
+- DECK CREATION: game_create_deck creates 1 copy of each card (52 cards total), NOT 3 copies. The deck is shared between players. After drawing 10 cards (5 per player), 42 cards remain.
+- COMBAT LOG: Combat log uses o_combatlog object with Draw_64 event for GUI layer. NEVER create Draw_64 events without explicit permission - user will create them. Always set draw_set_halign(fa_left) and draw_set_valign(fa_top) explicitly when drawing text in GUI layer to ensure left alignment.
+- COMBAT LOG POSITIONING: Combat log positioned on left side (x=20), starting at gui_h / 2 (halfway down screen), extending near bottom. Mouse wheel scrolling works when hovering over log area.
+- COMBAT LOG TEXT: Use string_split and string_width for proper word wrapping of long log entries. Color code by player: Player 1 (c_aqua), Player 2 (brighter red make_color_rgb(255, 100, 100)).
+- ENEMY STATS: Use separate o_enemy_stats object for enemy stats display. Draw on top right (gui_w - 350), mirroring player stats layout on left. Instance created in o_mainmenu when game starts.
+- TEXT ALIGNMENT: Always explicitly set text alignment in GUI drawing code. Use draw_set_halign(fa_left) and draw_set_valign(fa_top) at the start of drawing functions to prevent centering issues.
+- FILE CREATION: Do not create Draw_64 events or other files without explicit user permission. If user says "I just made it", they created the file themselves - only add code to existing files.
 Go Fuck yourself

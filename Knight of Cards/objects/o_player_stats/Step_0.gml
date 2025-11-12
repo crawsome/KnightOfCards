@@ -28,6 +28,8 @@ if (attack_button_hover && mouse_check_button_pressed(mb_left)) {
     var damage = max(1, current_player.atk - other_player.armor);
     player_mod_hp(other_player, -damage);
     
+    combat_log_add(o_game.whosturn, "Hero Attack dealt " + string(damage) + " damage");
+    
     show_debug_message("Base attack! " + string(damage) + " damage dealt to " + other_player.title);
     
     // End turn
@@ -67,6 +69,8 @@ var shuffle_button_hover = (mouse_x_gui >= shuffle_button_x && mouse_x_gui <= sh
 if (shuffle_button_hover && mouse_check_button_pressed(mb_left)) {
     // Redraw/Shuffle - forfeit turn by shuffling hand back into deck
     var current_player = o_game.players[o_game.whosturn];
+    
+    combat_log_add(o_game.whosturn, "Redrew hand");
     
     // Shuffle hand back into deck
     for (var i = 0; i < array_length(current_player.hand); i++) {
@@ -109,6 +113,7 @@ if (shuffle_button_hover && mouse_check_button_pressed(mb_left)) {
 
 if (button_hover && mouse_check_button_pressed(mb_left)) {
     var current_player = o_game.players[o_game.whosturn];
+    combat_log_add(o_game.whosturn, "Ended turn");
     current_player.mp = 0;
     current_player.endturn = true;
     

@@ -38,6 +38,7 @@ if (game_state == "playing") {
         }
         
         if (keyboard_check_pressed(vk_space)) {
+            combat_log_add(whosturn, "Ended turn");
             current_player.mp = 0;
             current_player.endturn = true;
             
@@ -76,6 +77,7 @@ if (game_state == "playing") {
             array_delete(current_player.hand, card_index, 1);
             show_debug_message("AI played card: " + card.title);
         } else {
+            combat_log_add(whosturn, "Ended turn");
             current_player.mp = 0;
             current_player.endturn = true;
             

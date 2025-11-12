@@ -9,6 +9,7 @@ whosturn = 0;
 turncount = 1;
 deck_empty = false;
 playing = false;
+combat_log = [];
 
 // Card color globals - 3 colors per suit (background, text, border)
 // Diamonds
