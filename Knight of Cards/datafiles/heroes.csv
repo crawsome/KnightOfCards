@@ -1,5 +1,5 @@
 uid,title,suit,color,category,hp,mp,armor,atk,art,info
-0,The Pillar of Diamonds,diamonds,red,defense,27,0,2,1,https://github.com/crawsome/knightofcards/img/diamond.png,"A heavily-armoured royal guard for the Pillar of Diamonds, fights for peace and has many ways to protect themself. "
-1,The Cloak of Spades,spades,black,status,26,1,1,1,https://github.com/crawsome/knightofcards/img/spades.png,"A former spy of the Legion of Spades, the cloak has many creative ways to poison and mame their enemies. "
-2,The Berserker of Clubs,clubs,black,attack,23,2,1,2,https://github.com/crawsome/knightofcards/img/clubs.png,"A former sellsword-turned-thief of Galdan's Horde of Clubs, she charges wildly to battle for her own life, and for yours. "
-3,The Priest of Hearts,hearts,red,heal,20,2,0,0,https://github.com/crawsome/knightofcards/img/hearts.png,"A devout priest of the Order of Hearts. Trained in the ways of ""The Regrowth"", he excels in healing magic."
+0,The Pillar of Diamonds,diamonds,red,defense,30,1,2,2,https://github.com/crawsome/knightofcards/img/diamond.png,"A heavily-armoured royal guard for the Pillar of Diamonds, fights for peace and has many ways to protect themself. "
+1,The Cloak of Spades,spades,black,status,24,1,2,2,https://github.com/crawsome/knightofcards/img/spades.png,"A former spy of the Legion of Spades, the cloak has many creative ways to poison and mame their enemies. "
+2,The Berserker of Clubs,clubs,black,attack,27,2,1,3,https://github.com/crawsome/knightofcards/img/clubs.png,"A former sellsword-turned-thief of Galdan's Horde of Clubs, she charges wildly to battle for her own life, and for yours. "
+3,The Priest of Hearts,hearts,red,heal,22,3,0,1,https://github.com/crawsome/knightofcards/img/hearts.png,"A devout priest of the Order of Hearts. Trained in the ways of ""The Regrowth"", he excels in healing magic."

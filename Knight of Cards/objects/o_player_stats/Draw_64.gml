@@ -24,10 +24,56 @@ draw_text(20, 85, "HP: " + string(current_player.hp) + " / MP: " + string(curren
 draw_set_color(c_white);
 draw_text(20, 110, "ATK: " + string(current_player.atk) + " DEF: " + string(current_player.armor));
 
+// Draw status ailments if they exist
+var status_y = 135;
+if (variable_struct_exists(current_player, "status_ailments") && array_length(current_player.status_ailments) > 0) {
+    draw_set_color(c_orange);
+    draw_text(20, status_y, "STATUS:");
+    status_y += 20;
+    for (var i = 0; i < array_length(current_player.status_ailments); i++) {
+        var ailment = current_player.status_ailments[i];
+        var ailment_text = "";
+        if (variable_struct_exists(ailment, "name")) {
+            ailment_text = ailment.name;
+            if (variable_struct_exists(ailment, "turns") && ailment.turns > 0) {
+                ailment_text += " (" + string(ailment.turns) + " turns)";
+            }
+        } else {
+            ailment_text = string(ailment);
+        }
+        draw_set_color(c_yellow);
+        draw_text(40, status_y, ailment_text);
+        status_y += 18;
+    }
+}
+
 draw_set_color(c_red);
 draw_text(gui_w - 300, 60, "Enemy: " + other_player.title);
 draw_text(gui_w - 300, 85, "HP: " + string(other_player.hp) + " MP: " + string(other_player.mp));
 draw_text(gui_w - 300, 110, "ATK: " + string(other_player.atk) + " DEF: " + string(other_player.armor));
+
+// Draw enemy status ailments if they exist
+var enemy_status_y = 135;
+if (variable_struct_exists(other_player, "status_ailments") && array_length(other_player.status_ailments) > 0) {
+    draw_set_color(c_orange);
+    draw_text(gui_w - 300, enemy_status_y, "STATUS:");
+    enemy_status_y += 20;
+    for (var i = 0; i < array_length(other_player.status_ailments); i++) {
+        var ailment = other_player.status_ailments[i];
+        var ailment_text = "";
+        if (variable_struct_exists(ailment, "name")) {
+            ailment_text = ailment.name;
+            if (variable_struct_exists(ailment, "turns") && ailment.turns > 0) {
+                ailment_text += " (" + string(ailment.turns) + " turns)";
+            }
+        } else {
+            ailment_text = string(ailment);
+        }
+        draw_set_color(c_yellow);
+        draw_text(gui_w - 280, enemy_status_y, ailment_text);
+        enemy_status_y += 18;
+    }
+}
 
 draw_set_color(c_lime);
 draw_text(20, 150, "YOUR HAND:");
@@ -63,14 +109,47 @@ var mouse_x_gui = device_mouse_x_to_gui(0);
 var mouse_y_gui = device_mouse_y_to_gui(0);
 var button_hover = (mouse_x_gui >= button_x && mouse_x_gui <= button_x + button_w && mouse_y_gui >= button_y && mouse_y_gui <= button_y + button_h);
 
+// END TURN button
 draw_set_color(button_hover ? c_lime : c_yellow);
 draw_rectangle(button_x, button_y, button_x + button_w, button_y + button_h, false);
 draw_set_color(c_black);
 draw_rectangle(button_x, button_y, button_x + button_w, button_y + button_h, true);
-draw_set_color(button_hover ? c_lime : c_yellow);
+draw_set_color(c_black); // Text color - black on yellow/lime background
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_text(button_x + button_w/2, button_y + button_h/2, "END TURN");
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+// BASE ATTACK button (top)
+var attack_button_x = button_x;
+var attack_button_y = button_y - (button_h * 2) - 20; // Above REDRAW button
+var attack_button_hover = (mouse_x_gui >= attack_button_x && mouse_x_gui <= attack_button_x + button_w && mouse_y_gui >= attack_button_y && mouse_y_gui <= attack_button_y + button_h);
+
+draw_set_color(attack_button_hover ? c_aqua : c_blue);
+draw_rectangle(attack_button_x, attack_button_y, attack_button_x + button_w, attack_button_y + button_h, false);
+draw_set_color(c_black);
+draw_rectangle(attack_button_x, attack_button_y, attack_button_x + button_w, attack_button_y + button_h, true);
+draw_set_color(c_white); // White text on blue/aqua background
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(attack_button_x + button_w/2, attack_button_y + button_h/2, "HERO ATTACK");
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+// REDRAW/SHUFFLE button (middle)
+var shuffle_button_x = button_x;
+var shuffle_button_y = button_y - button_h - 10; // Above END TURN button
+var shuffle_button_hover = (mouse_x_gui >= shuffle_button_x && mouse_x_gui <= shuffle_button_x + button_w && mouse_y_gui >= shuffle_button_y && mouse_y_gui <= shuffle_button_y + button_h);
+
+draw_set_color(shuffle_button_hover ? c_orange : c_red);
+draw_rectangle(shuffle_button_x, shuffle_button_y, shuffle_button_x + button_w, shuffle_button_y + button_h, false);
+draw_set_color(c_black);
+draw_rectangle(shuffle_button_x, shuffle_button_y, shuffle_button_x + button_w, shuffle_button_y + button_h, true);
+draw_set_color(c_white); // White text on red/orange background
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(shuffle_button_x + button_w/2, shuffle_button_y + button_h/2, "REDRAW");
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
