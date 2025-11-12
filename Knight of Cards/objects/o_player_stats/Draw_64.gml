@@ -1,4 +1,51 @@
 /// @description Draw game UI
+if (o_game.game_state == "gameover") {
+    var gui_w = display_get_gui_width();
+    var gui_h = display_get_gui_height();
+    
+    draw_set_font(f_menu_font_large);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    
+    // GAME OVER header
+    draw_set_color(c_red);
+    draw_text(gui_w / 2, gui_h / 2 - 100, "GAME OVER");
+    
+    // Determine winner
+    var winner_text = "";
+    var winner_color = c_white;
+    if (array_length(o_game.players) >= 2) {
+        if (o_game.players[0].hp <= 0) {
+            winner_text = o_game.players[1].title + " WINS!";
+            winner_color = make_color_rgb(255, 100, 100);
+        } else if (o_game.players[1].hp <= 0) {
+            winner_text = o_game.players[0].title + " WINS!";
+            winner_color = c_aqua;
+        } else {
+            winner_text = "DRAW - Deck Empty";
+            winner_color = c_yellow;
+        }
+    }
+    
+    draw_set_color(winner_color);
+    draw_text(gui_w / 2, gui_h / 2 - 40, winner_text);
+    
+    // Show final stats
+    draw_set_font(f_menu_font_small);
+    draw_set_color(c_white);
+    draw_set_halign(fa_center);
+    if (array_length(o_game.players) >= 2) {
+        draw_text(gui_w / 2, gui_h / 2 + 20, o_game.players[0].title + ": " + string(o_game.players[0].hp) + " HP");
+        draw_text(gui_w / 2, gui_h / 2 + 45, o_game.players[1].title + ": " + string(o_game.players[1].hp) + " HP");
+    }
+    
+    draw_text(gui_w / 2, gui_h / 2 + 80, "Press SPACE, ENTER, or CLICK to return to menu");
+    
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    return;
+}
+
 if (o_game.game_state != "playing") {
     return;
 }

@@ -15,7 +15,7 @@ Read rules before starting
 - Once a fix is made, don't undo it unless explicitly told.
 - Do not create or delete files manually.
 - Do not manually edit `.yy` files (use the GMS2 IDE only).
-- Do not add defensive code or guardrails unless requested.
+- Do not add defensive code or guardrails or fallbacks unless requested.
 - Do not detour into "quick debugging" or speculative refactors.
 - Do not invent new input controls or keybindings.
 - Do not create new features without explicit request.
@@ -42,7 +42,12 @@ Don't defend - just fix
 Check existing patterns first
 - UI drawing code goes in o_player_stats/Draw_64.gml, NOT o_game. o_player_stats already has Draw_64 event registered.
 - game_process_card function signature: game_process_card(card, current_player, target_player) - current_player pays the cost, target_player receives effects. NEVER spend mana from target_player.
-- Enemy AI: When whosturn == 1, implement AI that plays cards automatically. Check for playable cards (cost <= mp), play random one, or end turn if none available.
+- Enemy AI: When whosturn == 1, implement AI that plays cards automatically. AI prioritizes survival first, then killing. Never plays cards that damage self or help enemy.
+- ENEMY AI CARD SUIT RULES: Hearts and Diamonds are helpful cards - AI NEVER plays them on enemy (target == 1). Clubs and Spades are damage cards - AI NEVER plays them on self (target == 0).
+- ENEMY AI PRIORITIES: (1) Kill enemy if possible (hero attack or card can kill), (2) If AI HP < 25% prioritize survival, (3) If enemy HP < 30% and AI not critical, finish them, (4) If AI HP < 50% prioritize healing, (5) If AI healthy attack enemy. Each priority tries preferred cards first, then falls back to other type if needed.
+- ENEMY AI CARD FILTERING: AI never plays: cards that damage self (target == 0 with negative effects), cards that buff/heal enemy (target == 1 with positive effects), Hearts/Diamonds on enemy, Clubs/Spades on self. If no preferred cards available, play any safe card that doesn't violate these rules. If nothing available, do hero attack. If no attack possible, end turn.
+- ENEMY AI HERO ATTACK: AI does hero attack when: (1) Hero attack can kill enemy (highest priority), (2) No cards can be played, (3) No playable cards and no MP. Hero attack ends turn.
+- GAME OVER: When game_state == "gameover", display winner (check which player has hp <= 0), show final stats, allow input (SPACE/ENTER/CLICK) to return to menu. Reset game state when returning to menu.
 - Cards use room coordinates (mouse_x, mouse_y) for interaction, NOT GUI coordinates. Cards are drawn in room space.
 - When user reports bugs, FIX THEM IMMEDIATELY. Don't just check if they exist - actually implement the fixes.
 - o_player_stats instance is created in o_mainmenu when game starts. Don't create it elsewhere.

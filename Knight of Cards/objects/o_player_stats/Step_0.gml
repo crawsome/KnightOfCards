@@ -48,6 +48,7 @@ if (attack_button_hover && mouse_check_button_pressed(mb_left)) {
         o_game.whosturn = 0;
     } else {
         o_game.whosturn = 1;
+        o_game.ai_timer = 0; // Reset timer for AI turn start
     }
     
     if (o_game.turncount % 2 == 0) {
@@ -129,6 +130,7 @@ if (button_hover && mouse_check_button_pressed(mb_left)) {
         o_game.whosturn = 0;
     } else {
         o_game.whosturn = 1;
+        o_game.ai_timer = 0; // Reset timer for AI turn start
     }
     
     if (o_game.turncount % 2 == 0) {

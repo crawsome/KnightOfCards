@@ -10,6 +10,8 @@ turncount = 1;
 deck_empty = false;
 playing = false;
 combat_log = [];
+ai_timer = 0;
+ai_delay = 60; // Frames to wait between AI actions (1 second at 60fps)
 
 // Card color globals - 3 colors per suit (background, text, border)
 // Diamonds
